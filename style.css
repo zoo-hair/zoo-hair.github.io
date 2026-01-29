@@ -1840,3 +1840,247 @@ html {
 .reveal:nth-child(3) { transition-delay: 0.4s; }
 .reveal:nth-child(4) { transition-delay: 0.5s; }
 .reveal:nth-child(5) { transition-delay: 0.6s; }
+/* Enhanced Terminal Glow Effects */
+
+.terminal-body {
+    padding: 2rem;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--primary-color);
+    text-shadow: 
+        0 0 5px rgba(0, 255, 65, 0.8),
+        0 0 10px rgba(0, 255, 65, 0.6),
+        0 0 15px rgba(0, 255, 65, 0.4),
+        0 0 20px rgba(0, 255, 65, 0.2);
+    animation: text-flicker 3s infinite alternate;
+}
+
+@keyframes text-flicker {
+    0%, 100% { 
+        text-shadow: 
+            0 0 5px rgba(0, 255, 65, 0.8),
+            0 0 10px rgba(0, 255, 65, 0.6),
+            0 0 15px rgba(0, 255, 65, 0.4),
+            0 0 20px rgba(0, 255, 65, 0.2);
+    }
+    50% { 
+        text-shadow: 
+            0 0 3px rgba(0, 255, 65, 0.9),
+            0 0 7px rgba(0, 255, 65, 0.7),
+            0 0 12px rgba(0, 255, 65, 0.5),
+            0 0 18px rgba(0, 255, 65, 0.3);
+    }
+}
+
+.prompt {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+    text-shadow: 
+        0 0 7px rgba(0, 255, 65, 1),
+        0 0 12px rgba(0, 255, 65, 0.8),
+        0 0 17px rgba(0, 255, 65, 0.6);
+    font-weight: bold;
+}
+
+.terminal-output {
+    color: var(--text-light);
+    margin-left: 1.5rem;
+    margin-bottom: 0.8rem;
+    text-shadow: 
+        0 0 3px rgba(224, 224, 224, 0.3),
+        0 0 5px rgba(0, 255, 65, 0.2);
+}
+
+.terminal-output a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-color);
+    text-shadow: 
+        0 0 5px rgba(0, 247, 255, 0.6),
+        0 0 10px rgba(0, 247, 255, 0.4);
+}
+
+.terminal-output a:hover {
+    text-shadow: 
+        0 0 10px rgba(0, 247, 255, 1),
+        0 0 20px rgba(0, 247, 255, 0.8);
+}
+
+/* Terminal Mode Full Screen */
+.terminal-output-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--primary-color);
+    text-shadow: 
+        0 0 5px rgba(0, 255, 65, 0.8),
+        0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.terminal-intro {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    text-shadow: 
+        0 0 5px rgba(0, 255, 65, 0.6),
+        0 0 10px rgba(0, 255, 65, 0.4);
+}
+
+.terminal-prompt {
+    color: var(--primary-color);
+    margin-right: 1rem;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    text-shadow: 
+        0 0 8px rgba(0, 255, 65, 1),
+        0 0 15px rgba(0, 255, 65, 0.7);
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--primary-color);
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    caret-color: var(--primary-color);
+    text-shadow: 
+        0 0 5px rgba(0, 255, 65, 0.6),
+        0 0 10px rgba(0, 255, 65, 0.4);
+}
+
+/* Neofetch specific styles */
+.neofetch-container {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.neofetch-logo {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    color: var(--primary-color);
+    text-shadow: 
+        0 0 8px rgba(0, 255, 65, 0.8),
+        0 0 15px rgba(0, 255, 65, 0.5);
+    white-space: pre;
+    font-family: 'VT323', monospace;
+}
+
+.neofetch-info {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.neofetch-line {
+    margin-bottom: 0.3rem;
+    text-shadow: 
+        0 0 3px rgba(0, 255, 65, 0.5),
+        0 0 6px rgba(0, 255, 65, 0.3);
+}
+
+.neofetch-label {
+    color: var(--accent-color);
+    font-weight: bold;
+    text-shadow: 
+        0 0 5px rgba(0, 247, 255, 0.7),
+        0 0 10px rgba(0, 247, 255, 0.5);
+}
+
+.neofetch-value {
+    color: var(--text-light);
+}
+
+.color-blocks {
+    display: flex;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+}
+
+.color-block {
+    width: 30px;
+    height: 15px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+/* ASCII Art Glow */
+.ascii-art {
+    color: var(--primary-color);
+    font-size: 0.6rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-shadow: 
+        0 0 10px rgba(0, 255, 65, 1),
+        0 0 20px rgba(0, 255, 65, 0.8),
+        0 0 30px rgba(0, 255, 65, 0.6);
+    animation: ascii-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ascii-pulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 10px rgba(0, 255, 65, 1),
+            0 0 20px rgba(0, 255, 65, 0.8),
+            0 0 30px rgba(0, 255, 65, 0.6);
+    }
+    50% {
+        text-shadow: 
+            0 0 15px rgba(0, 255, 65, 1),
+            0 0 30px rgba(0, 255, 65, 0.9),
+            0 0 45px rgba(0, 255, 65, 0.7);
+    }
+}
+
+/* Command output styling */
+.command-output {
+    color: var(--text-light);
+    margin: 0.5rem 0 1rem 2rem;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(0, 255, 65, 0.3);
+    text-shadow: 
+        0 0 3px rgba(224, 224, 224, 0.3),
+        0 0 5px rgba(0, 255, 65, 0.2);
+}
+
+.command-line {
+    margin: 0.5rem 0;
+}
+
+.command-line .prompt {
+    color: var(--primary-color);
+}
+
+.command-line .command-text {
+    color: var(--text-light);
+    text-shadow: 
+        0 0 5px rgba(224, 224, 224, 0.4),
+        0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+/* Typing effect with glow */
+.typing-effect {
+    animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--primary-color);
+    text-shadow: 
+        0 0 5px rgba(0, 255, 65, 0.8),
+        0 0 10px rgba(0, 255, 65, 0.6);
+}
+
+.blink {
+    animation: blink-glow 1s steps(2, start) infinite;
+}
+
+@keyframes blink-glow {
+    to { 
+        visibility: hidden;
+        text-shadow: none;
+    }
+}

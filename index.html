@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juhair Islam Sami | Game Dev & Code Wizard | Prompt Engineer | Cyber Security Enthusiast | Code Janitor</title>
-    <meta name="description" content="Portfolio of Juhair Islam Sami - Hobbiest Game Developer, CS Student, and Pixel Artist. Specializing in retro-style games, CLI tools, and prompt engineering.">
+    <title>Juhair Islam Sami | Game Dev & Code Wizard | Prompt Engineer | Cyber Security Enthusiast</title>
+    <meta name="description" content="Portfolio of Juhair Islam Sami - Hobbyist Game Developer, CS Student, and Pixel Artist. Specializing in retro-style games, CLI tools, and prompt engineering.">
     <meta name="keywords" content="Juhair Islam Sami, Game Developer, CS Student, Pixel Artist, Portfolio, Web Development, Retro Games">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zoo-hair.github.io/">
     <meta property="og:title" content="Juhair Islam Sami | Game Dev & Code Wizard">
-    <meta property="og:description" content="Explore the projects and skills of Juhair Islam Sami, a passionate hobbuest Game Developer and CS Student.">
+    <meta property="og:description" content="Explore the projects and skills of Juhair Islam Sami, a passionate hobbyist Game Developer and CS Student.">
     <meta property="og:image" content="https://zoo-hair.github.io/og-image.png">
 
     <!-- Twitter -->
@@ -68,8 +68,8 @@
     <div class="pixel-cursor"></div>
 
     <!-- Terminal Mode Toggle -->
-    <button id="terminal-mode-toggle" class="terminal-toggle" title="Toggle Terminal Mode (Ctrl+~)">
-        <span class="toggle-icon">💻</span>
+    <button id="terminal-mode-toggle" class="terminal-toggle" title="Toggle Terminal Mode (Ctrl+~)" aria-label="Toggle Terminal Mode">
+        <span class="toggle-icon" aria-hidden="true">💻</span>
         <span class="toggle-text">TERMINAL</span>
     </button>
 
@@ -79,7 +79,7 @@
         <nav class="nav-bar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <span class="pixel-icon">🎮</span>
+                    <span class="pixel-icon" aria-hidden="true">🎮</span>
                     <span class="logo-text">ZOO-HAIR</span>
                 </div>
                 <ul class="nav-menu">
@@ -95,14 +95,14 @@
 
         <!-- Hero Section -->
         <section id="home" class="hero-section">
-            <div class="stars-bg"></div>
+            <div class="stars-bg" aria-hidden="true"></div>
             <div class="hero-content">
                 <h1 class="hero-title">Hello, I'm Juhair</h1>
                 <div class="terminal-window">
                     <div class="terminal-header">
-                        <span class="terminal-dot red"></span>
-                        <span class="terminal-dot yellow"></span>
-                        <span class="terminal-dot green"></span>
+                        <span class="terminal-dot red" aria-hidden="true"></span>
+                        <span class="terminal-dot yellow" aria-hidden="true"></span>
+                        <span class="terminal-dot green" aria-hidden="true"></span>
                         <span class="terminal-title">player_profile.exe</span>
                     </div>
                     <div class="terminal-body">
@@ -113,7 +113,7 @@
                         <p class="terminal-line"><span class="prompt">$</span> echo $LOCATION</p>
                         <p class="terminal-output">Dhaka, Bangladesh 🇧🇩</p>
                         <p class="terminal-line"><span class="prompt">$</span> ./start_adventure.sh</p>
-                        <p class="terminal-output blink">▶ Loading player stats...</p>
+                        <p class="terminal-output blink" aria-live="polite">▶ Loading player stats...</p>
                     </div>
                 </div>
                 
@@ -150,22 +150,22 @@
                 
                 <div class="github-stats-grid">
                     <div class="github-stat-card">
-                        <div class="stat-icon">📊</div>
+                        <div class="stat-icon" aria-hidden="true">📊</div>
                         <div class="stat-number" id="total-repos">--</div>
                         <div class="stat-label">Public Repos</div>
                     </div>
                     <div class="github-stat-card">
-                        <div class="stat-icon">👥</div>
+                        <div class="stat-icon" aria-hidden="true">👥</div>
                         <div class="stat-number" id="followers">--</div>
                         <div class="stat-label">Followers</div>
                     </div>
                     <div class="github-stat-card">
-                        <div class="stat-icon">🔗</div>
+                        <div class="stat-icon" aria-hidden="true">🔗</div>
                         <div class="stat-number" id="following">--</div>
                         <div class="stat-label">Following</div>
                     </div>
                     <div class="github-stat-card">
-                        <div class="stat-icon">⭐</div>
+                        <div class="stat-icon" aria-hidden="true">⭐</div>
                         <div class="stat-number" id="total-stars">--</div>
                         <div class="stat-label">Total Stars</div>
                     </div>
@@ -173,7 +173,7 @@
 
                 <div class="github-contribution-graph">
                     <h3 class="graph-title">Contribution Graph</h3>
-                    <img src="https://ghchart.rshah.org/00ff41/zoo-hair" alt="GitHub Contribution Graph" class="contribution-img"/>
+                    <img src="https://ghchart.rshah.org/00ff41/zoo-hair" alt="GitHub Contribution Graph showing zoo-hair's activity" class="contribution-img" loading="lazy"/>
                 </div>
 
                 <div class="github-languages" id="github-languages">
@@ -216,8 +216,8 @@
                             <div class="game-log-container">
                                 <div class="log-header">SYSTEM_LOG</div>
                                 <div id="game-event-log" class="game-event-log">
-                                    <div class="log-line">> Initiating cyber-snake...</div>
-                                    <div class="log-line">> Awaiting user input...</div>
+                                    <div class="log-line">&gt; Initiating cyber-snake...</div>
+                                    <div class="log-line">&gt; Awaiting user input...</div>
                                 </div>
                             </div>
                         </div>
@@ -226,21 +226,21 @@
                     <div class="game-canvas-container">
                         <div class="terminal-header">
                             <div class="terminal-dots">
-                                <div class="terminal-dot red"></div>
-                                <div class="terminal-dot yellow"></div>
-                                <div class="terminal-dot green"></div>
+                                <div class="terminal-dot red" aria-hidden="true"></div>
+                                <div class="terminal-dot yellow" aria-hidden="true"></div>
+                                <div class="terminal-dot green" aria-hidden="true"></div>
                             </div>
                             <div class="terminal-title">CYBER_SNAKE.EXE</div>
                         </div>
-                        <canvas id="snakeCanvas" width="400" height="400"></canvas>
+                        <canvas id="snakeCanvas" width="400" height="400" role="img" aria-label="Snake game canvas"></canvas>
                         
                         <!-- Virtual D-Pad for Mobile -->
                         <div class="game-controls-mobile">
-                            <button class="d-btn up" onclick="changeDirection('up')">▲</button>
+                            <button class="d-btn up" onclick="changeDirection('arrowup')" aria-label="Move up">▲</button>
                             <div class="d-row">
-                                <button class="d-btn left" onclick="changeDirection('left')">◀</button>
-                                <button class="d-btn down" onclick="changeDirection('down')">▼</button>
-                                <button class="d-btn right" onclick="changeDirection('right')">▶</button>
+                                <button class="d-btn left" onclick="changeDirection('arrowleft')" aria-label="Move left">◀</button>
+                                <button class="d-btn down" onclick="changeDirection('arrowdown')" aria-label="Move down">▼</button>
+                                <button class="d-btn right" onclick="changeDirection('arrowright')" aria-label="Move right">▶</button>
                             </div>
                         </div>
 
@@ -266,7 +266,7 @@
                 <div class="about-content">
                     <div class="about-card reveal">
                         <div class="card-header">
-                            <span class="card-icon">🧑‍💻</span>
+                            <span class="card-icon" aria-hidden="true">🧑‍💻</span>
                             <h3>WHO AM I?</h3>
                         </div>
                         <div class="card-body">
@@ -276,7 +276,7 @@
 
                     <div class="about-card reveal">
                         <div class="card-header">
-                            <span class="card-icon">🎯</span>
+                            <span class="card-icon" aria-hidden="true">🎯</span>
                             <h3>CURRENT QUEST</h3>
                         </div>
                         <div class="card-body">
@@ -284,7 +284,7 @@
                                 <li>🔨 Building CLI encryption tool in C</li>
                                 <li>🎮 Developing retro pixel adventure with Phaser 3</li>
                                 <li>🌱 Learning Spring Boot for backend</li>
-                                <li>📚 Mastering Data Structures & Algorithms</li>
+                                <li>📚 Mastering Data Structures &amp; Algorithms</li>
                                 <li>🎨 Creating 8-bit pixel art sprites</li>
                             </ul>
                         </div>
@@ -292,20 +292,20 @@
 
                     <div class="about-card reveal">
                         <div class="card-header">
-                            <span class="card-icon">⚡</span>
+                            <span class="card-icon" aria-hidden="true">⚡</span>
                             <h3>FUN FACTS</h3>
                         </div>
                         <div class="card-body">
                             <div class="fact-item">
-                                <span class="fact-icon">🎨</span>
+                                <span class="fact-icon" aria-hidden="true">🎨</span>
                                 <span>I spend more time coding animations than playing games</span>
                             </div>
                             <div class="fact-item">
-                                <span class="fact-icon">💡</span>
+                                <span class="fact-icon" aria-hidden="true">💡</span>
                                 <span>Motto: "If it can be imagined, it can be coded!"</span>
                             </div>
                             <div class="fact-item">
-                                <span class="fact-icon">🏋️</span>
+                                <span class="fact-icon" aria-hidden="true">🏋️</span>
                                 <span>Code by day, gym by evening, game dev by night</span>
                             </div>
                         </div>
@@ -325,11 +325,11 @@
                             <span class="project-status live">🎮 LIVE</span>
                             <span class="project-tech">JS • Multi-player</span>
                         </div>
-                        <div class="project-icon">🏢</div>
+                        <div class="project-icon" aria-hidden="true">🏢</div>
                         <h3 class="project-title">OfficeVerse</h3>
                         <p class="project-desc">The ultimate multiplayer virtual office. Work, collaborate, and interact in a real-time smart world architecture.</p>
                         <div class="project-footer">
-                            <a href="https://github.com/zoo-hair/OfficeVerse-" class="project-link" target="_blank">DEPLOY NODE →</a>
+                            <a href="https://github.com/zoo-hair/OfficeVerse-" class="project-link" target="_blank" rel="noopener noreferrer">DEPLOY NODE →</a>
                         </div>
                     </div>
 
@@ -338,11 +338,11 @@
                             <span class="project-status complete">🔐 SECURE</span>
                             <span class="project-tech">Java • CLI</span>
                         </div>
-                        <div class="project-icon">🤫</div>
+                        <div class="project-icon" aria-hidden="true">🤫</div>
                         <h3 class="project-title">Whisper_shHHH</h3>
                         <p class="project-desc">A deep-dive into historical and modern cryptography. Features Morse, Caesar, and custom 'LetHimCook' ciphers.</p>
                         <div class="project-footer">
-                            <a href="https://github.com/zoo-hair/Whisper_shHHH" class="project-link" target="_blank">DECRYPT CODE →</a>
+                            <a href="https://github.com/zoo-hair/Whisper_shHHH" class="project-link" target="_blank" rel="noopener noreferrer">DECRYPT CODE →</a>
                         </div>
                     </div>
 
@@ -351,11 +351,11 @@
                             <span class="project-status complete">✅ SYSTEM</span>
                             <span class="project-tech">C • Structured</span>
                         </div>
-                        <div class="project-icon">🎫</div>
+                        <div class="project-icon" aria-hidden="true">🎫</div>
                         <h3 class="project-title">SPL Ticket System</h3>
                         <p class="project-desc">Trimester final project for SPL Lab. A robust ticketing system with user authentication and database logic in C.</p>
                         <div class="project-footer">
-                            <a href="https://github.com/zoo-hair/spl_lab_project_ticket_system" class="project-link" target="_blank">ACCESS DATABASE →</a>
+                            <a href="https://github.com/zoo-hair/spl_lab_project_ticket_system" class="project-link" target="_blank" rel="noopener noreferrer">ACCESS DATABASE →</a>
                         </div>
                     </div>
                 </div>
@@ -400,7 +400,7 @@
                     </div>
 
                     <div class="skill-category reveal">
-                        <h3 class="category-title">🎮 GAME DEV & FRAMEWORKS</h3>
+                        <h3 class="category-title">🎮 GAME DEV &amp; FRAMEWORKS</h3>
                         <div class="skill-grid">
                             <div class="skill-item">
                                 <div class="skill-icon">Phaser</div>
@@ -426,7 +426,7 @@
                     </div>
 
                     <div class="skill-category">
-                        <h3 class="category-title">🔧 TOOLS & PLATFORMS</h3>
+                        <h3 class="category-title">🔧 TOOLS &amp; PLATFORMS</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Git</span>
                             <span class="skill-tag">GitHub</span>
@@ -459,7 +459,7 @@
                 <!-- Player Stats -->
                 <div class="player-stats-box reveal">
                     <div class="stats-header">
-                        <span class="stats-icon">🎮</span>
+                        <span class="stats-icon" aria-hidden="true">🎮</span>
                         <h3>PLAYER STATS</h3>
                     </div>
                     <div class="stats-content">
@@ -502,20 +502,20 @@
                         <p class="contact-intro">Want to collaborate on a project, discuss game development, or just say hi? Let's connect!</p>
                         
                         <div class="social-links">
-                            <a href="https://github.com/zoo-hair" target="_blank" class="social-btn">
-                                <span class="social-icon">🐙</span>
+                            <a href="https://github.com/zoo-hair" target="_blank" rel="noopener noreferrer" class="social-btn">
+                                <span class="social-icon" aria-hidden="true">🐙</span>
                                 <span class="social-text">GitHub</span>
                             </a>
-                            <a href="https://linkedin.com/in/zuhair-islam" target="_blank" class="social-btn">
-                                <span class="social-icon">💼</span>
+                            <a href="https://linkedin.com/in/zuhair-islam" target="_blank" rel="noopener noreferrer" class="social-btn">
+                                <span class="social-icon" aria-hidden="true">💼</span>
                                 <span class="social-text">LinkedIn</span>
                             </a>
                             <a href="mailto:geraltofmalitola@gmail.com" class="social-btn">
-                                <span class="social-icon">📧</span>
+                                <span class="social-icon" aria-hidden="true">📧</span>
                                 <span class="social-text">Email</span>
                             </a>
-                            <a href="https://discord.gg/zoohair0140" target="_blank" class="social-btn">
-                                <span class="social-icon">💬</span>
+                            <a href="https://discord.gg/zoohair0140" target="_blank" rel="noopener noreferrer" class="social-btn">
+                                <span class="social-icon" aria-hidden="true">💬</span>
                                 <span class="social-text">Discord</span>
                             </a>
                         </div>
@@ -524,14 +524,14 @@
                     <div class="contact-terminal">
                         <div class="terminal-window">
                             <div class="terminal-header">
-                                <span class="terminal-dot red"></span>
-                                <span class="terminal-dot yellow"></span>
-                                <span class="terminal-dot green"></span>
+                                <span class="terminal-dot red" aria-hidden="true"></span>
+                                <span class="terminal-dot yellow" aria-hidden="true"></span>
+                                <span class="terminal-dot green" aria-hidden="true"></span>
                                 <span class="terminal-title">send_message.sh</span>
                             </div>
                             <div class="terminal-body">
                                 <p class="terminal-line"><span class="prompt">$</span> echo "Quick Links"</p>
-                                <p class="terminal-output">→ GitHub: <a href="https://github.com/zoo-hair" target="_blank">github.com/zoo-hair</a></p>
+                                <p class="terminal-output">→ GitHub: <a href="https://github.com/zoo-hair" target="_blank" rel="noopener noreferrer">github.com/zoo-hair</a></p>
                                 <p class="terminal-output">→ Email: geraltofmalitola@gmail.com</p>
                                 <p class="terminal-output">→ Location: Dhaka, Bangladesh 🇧🇩</p>
                                 <p class="terminal-line"><span class="prompt">$</span> cat status.txt</p>
@@ -564,9 +564,9 @@
     <div id="terminal-mode" class="terminal-mode" style="display: none;">
         <div class="terminal-full">
             <div class="terminal-header">
-                <span class="terminal-dot red"></span>
-                <span class="terminal-dot yellow"></span>
-                <span class="terminal-dot green"></span>
+                <span class="terminal-dot red" aria-hidden="true"></span>
+                <span class="terminal-dot yellow" aria-hidden="true"></span>
+                <span class="terminal-dot green" aria-hidden="true"></span>
                 <span class="terminal-title">zoo-hair@portfolio:~$</span>
             </div>
             <div class="terminal-output-area" id="terminal-output">
@@ -580,6 +580,7 @@
  ╚══════╝ ╚═════╝  ╚═════╝       ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
                     </pre>
                     <p class="terminal-intro">Welcome to Juhair's Terminal Portfolio v1.0</p>
+                    <p class="terminal-intro">Type '<span style="color: var(--accent-color); text-shadow: 0 0 10px var(--accent-color);">neofetch</span>' to see system information</p>
                     <p class="terminal-intro">Type 'help' for available commands</p>
                     <p class="terminal-intro">Press Ctrl+~ or click the TERMINAL button to toggle GUI mode</p>
                     <br>
@@ -587,7 +588,7 @@
             </div>
             <div class="terminal-input-line">
                 <span class="terminal-prompt">zoo-hair@portfolio:~$</span>
-                <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autofocus>
+                <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autofocus aria-label="Terminal command input">
             </div>
         </div>
     </div>

@@ -72,13 +72,13 @@ function animateCursor() {
     const dx = mouseX - cursorX;
     const dy = mouseY - cursorY;
     
-    cursorX += dx * 0.15; // Slightly faster for better feel
+    cursorX += dx * 0.15;
     cursorY += dy * 0.15;
     
     if (cursor) {
         cursor.style.left = `${cursorX}px`;
         cursor.style.top = `${cursorY}px`;
-        cursor.style.transform = 'translate(-50%, -50%)'; // Ensure it's centered
+        cursor.style.transform = 'translate(-50%, -50%)';
     }
     
     requestAnimationFrame(animateCursor);
@@ -140,32 +140,104 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// ==================== NEOFETCH COMMAND ====================
+function getNeofetch() {
+    const uptime = Math.floor((Date.now() - performance.timing.navigationStart) / 1000);
+    const hours = Math.floor(uptime / 3600);
+    const minutes = Math.floor((uptime % 3600) / 60);
+    const seconds = uptime % 60;
+    
+    const logo = `
+    ███████╗ ██████╗  ██████╗       ██╗  ██╗ █████╗ ██╗██████╗ 
+    ╚══███╔╝██╔═══██╗██╔═══██╗      ██║  ██║██╔══██╗██║██╔══██╗
+      ███╔╝ ██║   ██║██║   ██║█████╗███████║███████║██║██████╔╝
+     ███╔╝  ██║   ██║██║   ██║╚════╝██╔══██║██╔══██║██║██╔══██╗
+    ███████╗╚██████╔╝╚██████╔╝      ██║  ██║██║  ██║██║██║  ██║
+    ╚══════╝ ╚═════╝  ╚═════╝       ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝`;
+    
+    const memUsed = performance.memory ? (performance.memory.usedJSHeapSize / 1048576).toFixed(0) : 'N/A';
+    const memLimit = performance.memory ? (performance.memory.jsHeapSizeLimit / 1048576).toFixed(0) : 'N/A';
+    const projectCount = document.querySelectorAll('.project-card').length || 6;
+    
+    return `
+<div class="neofetch-container">
+    <div class="neofetch-logo">${logo}</div>
+    <div class="neofetch-info">
+        <div class="neofetch-line"><span class="neofetch-label">zoo-hair</span>@<span class="neofetch-label">portfolio</span></div>
+        <div class="neofetch-line">─────────────────────────────</div>
+        <div class="neofetch-line"><span class="neofetch-label">OS:</span> <span class="neofetch-value">Antigravity Linux x86_64</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Host:</span> <span class="neofetch-value">Cyberpunk Terminal v2.0</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Kernel:</span> <span class="neofetch-value">6.6.6-cyber-punk</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Uptime:</span> <span class="neofetch-value">${hours}h ${minutes}m ${seconds}s</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Packages:</span> <span class="neofetch-value">${projectCount} (projects)</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Shell:</span> <span class="neofetch-value">Portfolio Terminal 1.0</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Resolution:</span> <span class="neofetch-value">${window.innerWidth}x${window.innerHeight}</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">DE:</span> <span class="neofetch-value">HackerUI</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">WM:</span> <span class="neofetch-value">CyberWindow Manager</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Theme:</span> <span class="neofetch-value">Matrix-Neon [GTK3]</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Icons:</span> <span class="neofetch-value">Pixel-Perfect [GTK3]</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Terminal:</span> <span class="neofetch-value">VT323-term</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Terminal Font:</span> <span class="neofetch-value">VT323 Mono</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">CPU:</span> <span class="neofetch-value">${navigator.hardwareConcurrency || 'N/A'} x Quantum Core</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">GPU:</span> <span class="neofetch-value">Integrated Neon Graphics</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Memory:</span> <span class="neofetch-value">${memUsed}MB / ${memLimit}MB</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Location:</span> <span class="neofetch-value">Dhaka, Bangladesh 🇧🇩</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Local IP:</span> <span class="neofetch-value">192.168.1.101</span></div>
+        <div class="neofetch-line"><span class="neofetch-label">Locale:</span> <span class="neofetch-value">${navigator.language || 'en-US'}</span></div>
+        <div class="neofetch-line">─────────────────────────────</div>
+        <div class="color-blocks">
+            <div class="color-block" style="background: #000000;"></div>
+            <div class="color-block" style="background: #ff0000;"></div>
+            <div class="color-block" style="background: #00ff00;"></div>
+            <div class="color-block" style="background: #ffff00;"></div>
+            <div class="color-block" style="background: #0000ff;"></div>
+            <div class="color-block" style="background: #ff00ff;"></div>
+            <div class="color-block" style="background: #00ffff;"></div>
+            <div class="color-block" style="background: #ffffff;"></div>
+        </div>
+    </div>
+</div>`;
+}
+
 // ==================== TERMINAL COMMANDS ====================
+// Command history (declared once)
+let commandHistory = [];
+let historyIndex = -1;
+
 const terminalCommands = {
     help: () => `
+<div class="command-output">
 Available commands:
-  help        - Show this help message
-  about       - Display information about me
-  projects    - List all projects
-  skills      - Show my skills
-  contact     - Display contact information
-  github      - Show GitHub stats
-  snake       - Play snake game
-  clear       - Clear terminal
-  whoami      - Display current user
-  ls          - List available sections
-  cat <file>  - Display file contents
-  pwd         - Print working directory
-  matrix      - Enter the Matrix
-  exit        - Return to GUI mode
+  <span style="color: var(--primary-color);">help</span>        - Show this help message
+  <span style="color: var(--primary-color);">neofetch</span>    - Display system information (Try it!)
+  <span style="color: var(--primary-color);">about</span>       - Display information about me
+  <span style="color: var(--primary-color);">projects</span>    - List all projects
+  <span style="color: var(--primary-color);">skills</span>      - Show my skills
+  <span style="color: var(--primary-color);">contact</span>     - Display contact information
+  <span style="color: var(--primary-color);">github</span>      - Show GitHub stats
+  <span style="color: var(--primary-color);">snake</span>       - Play snake game
+  <span style="color: var(--primary-color);">clear</span>       - Clear terminal
+  <span style="color: var(--primary-color);">whoami</span>      - Display current user
+  <span style="color: var(--primary-color);">ls</span>          - List available sections
+  <span style="color: var(--primary-color);">cat</span> &lt;file&gt;  - Display file contents
+  <span style="color: var(--primary-color);">pwd</span>         - Print working directory
+  <span style="color: var(--primary-color);">date</span>        - Display current date and time
+  <span style="color: var(--primary-color);">uptime</span>      - Show system uptime
+  <span style="color: var(--primary-color);">fortune</span>     - Display a random fortune
+  <span style="color: var(--primary-color);">matrix</span>      - Enter the Matrix
+  <span style="color: var(--primary-color);">exit</span>        - Return to GUI mode
+</div>
 `,
     
+    neofetch: () => getNeofetch(),
+    
     about: () => `
+<div class="command-output">
 ╔════════════════════════════════════════╗
 ║            ABOUT ME                    ║
 ╠════════════════════════════════════════╣
 ║ Name: Juhair Islam Sami                ║
-║ Role: CS Sophomore | Game Dev         ║
+║ Role: CS Sophomore | Game Dev          ║
 ║ Location: Dhaka, Bangladesh 🇧🇩         ║
 ║ University: UIU                        ║
 ║                                        ║
@@ -176,12 +248,14 @@ Available commands:
 ║  • CLI Tools                           ║
 ║  • Data Structures & Algorithms        ║
 ║                                        ║
-║ Motto: "If it can be imagined,        ║
+║ Motto: "If it can be imagined,         ║
 ║         it can be coded!"              ║
 ╚════════════════════════════════════════╝
+</div>
 `,
     
     projects: () => `
+<div class="command-output">
 📁 PROJECTS:
 
 [1] 🔐 CLI Encryption Tool
@@ -215,9 +289,11 @@ Available commands:
     Description: CLI ticket booking system
 
 Type 'exit' to return to GUI and see full details.
+</div>
 `,
     
     skills: () => `
+<div class="command-output">
 💻 SKILLS:
 
 Languages:
@@ -234,13 +310,16 @@ Frameworks:
   CSS3      ████████████████░░ 88%
 
 Tools:
-  Git, GitHub, VS Code, Linux, CLI, Vim, GCC, Maven, IntelliJ, Clion, Antigravity, Gradle Groovy
+  Git, GitHub, VS Code, Linux, CLI, Vim, GCC, Maven, 
+  IntelliJ, CLion, Antigravity, Gradle Groovy
 
 Creative:
-  Pixel Art, Sprite Design, Animation, Game Design, tilemap creator
+  Pixel Art, Sprite Design, Animation, Game Design
+</div>
 `,
     
     contact: () => `
+<div class="command-output">
 📧 CONTACT INFORMATION:
 
 Email:    geraltofmalitola@gmail.com
@@ -255,9 +334,11 @@ Status:
   ✅ Always learning something new
 
 Feel free to reach out!
+</div>
 `,
     
     github: () => `
+<div class="command-output">
 🐙 GITHUB STATS:
 
 Fetching GitHub statistics...
@@ -269,9 +350,11 @@ Active Contributor: Yes
 Languages: C, C++, Java, Python, JavaScript
 
 Type 'exit' to see detailed GitHub stats in GUI mode.
+</div>
 `,
     
     snake: () => `
+<div class="command-output">
 🐍 SNAKE GAME:
 
 The snake game is best played in GUI mode!
@@ -283,13 +366,15 @@ Controls:
   R - Restart
 
 High Score: ${localStorage.getItem('snakeHighScore') || 0}
+</div>
 `,
     
     clear: () => 'CLEAR_TERMINAL',
     
-    whoami: () => 'zoo-hair',
+    whoami: () => '<div class="command-output">zoo-hair</div>',
     
     ls: () => `
+<div class="command-output">
 home/
 ├── about.txt
 ├── projects/
@@ -298,40 +383,65 @@ home/
 ├── games/
 │   └── snake.exe
 └── github/
+</div>
 `,
     
     cat: (args) => {
         const file = args[0];
-        if (!file) return 'Usage: cat <filename>';
+        if (!file) return '<div class="command-output">Usage: cat &lt;filename&gt;</div>';
         
         const files = {
             'about.txt': terminalCommands.about(),
             'skills.txt': terminalCommands.skills(),
             'contact.txt': terminalCommands.contact(),
-            'roles.txt': 'Game Developer | CS Student | Pixel Artist | Code Wizard'
+            'roles.txt': '<div class="command-output">Game Developer | CS Student | Pixel Artist | Code Wizard</div>'
         };
         
-        return files[file] || `cat: ${file}: No such file or directory`;
+        return files[file] || `<div class="command-output">cat: ${file}: No such file or directory</div>`;
     },
     
-    pwd: () => '/home/zoo-hair/portfolio',
+    pwd: () => '<div class="command-output">/home/zoo-hair/portfolio</div>',
+    
+    date: () => {
+        const now = new Date();
+        return `<div class="command-output">${now.toString()}</div>`;
+    },
+    
+    uptime: () => {
+        const uptime = Math.floor((Date.now() - performance.timing.navigationStart) / 1000);
+        const hours = Math.floor(uptime / 3600);
+        const minutes = Math.floor((uptime % 3600) / 60);
+        const seconds = uptime % 60;
+        return `<div class="command-output">up ${hours} hours, ${minutes} minutes, ${seconds} seconds</div>`;
+    },
+    
+    fortune: () => {
+        const fortunes = [
+            "Today you will write bug-free code... just kidding! 🐛",
+            "A merge conflict approaches. Prepare your git skills. ⚔️",
+            "Coffee consumption +50%. Productivity +100%. ☕",
+            "You will discover a semicolon in an unexpected place. 🔍",
+            "The code you write today will haunt you tomorrow. 👻",
+            "Stack Overflow is your friend, but documentation is your ally. 📚",
+            "Your next commit message will be actually descriptive! 🎯",
+            "Beware of off-by-one errors... or is it off-by-two? 🤔"
+        ];
+        const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+        return `<div class="command-output">${fortune}</div>`;
+    },
     
     matrix: () => {
         activateMatrixMode();
-        return '🎮 Entering the Matrix...';
+        return '<div class="command-output">🎮 Entering the Matrix...</div>';
     },
     
     exit: () => {
         toggleTerminalMode();
-        return 'Returning to GUI mode...';
+        return '<div class="command-output">Returning to GUI mode...</div>';
     }
 };
 
-// Command history
-let commandHistory = [];
-let historyIndex = -1;
-
-// Process terminal commands
+// ==================== TERMINAL INPUT PROCESSING ====================
 if (terminalInput) {
     terminalInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
@@ -345,9 +455,10 @@ if (terminalInput) {
             const cmd = parts[0].toLowerCase();
             const args = parts.slice(1);
             
-            // Add command to output
+            // Add command to output with glow effect
             const commandLine = document.createElement('div');
-            commandLine.innerHTML = `<span style="color: var(--primary-color);">zoo-hair@portfolio:~$</span> ${command}`;
+            commandLine.className = 'command-line';
+            commandLine.innerHTML = `<span class="prompt">zoo-hair@portfolio:~$</span> <span class="command-text">${command}</span>`;
             terminalOutput.appendChild(commandLine);
             
             // Execute command
@@ -357,7 +468,7 @@ if (terminalInput) {
             } else if (command === '') {
                 output = '';
             } else {
-                output = `Command not found: ${cmd}. Type 'help' for available commands.`;
+                output = `<div class="command-output">Command not found: ${cmd}. Type 'help' for available commands.</div>`;
             }
             
             // Handle special commands
@@ -368,11 +479,9 @@ if (terminalInput) {
                     const welcome = welcomeArea.cloneNode(true);
                     terminalOutput.appendChild(welcome);
                 }
-            } else {
-                const outputDiv = document.createElement('pre');
-                outputDiv.style.whiteSpace = 'pre-wrap';
-                outputDiv.style.margin = '0.5rem 0 1rem 0';
-                outputDiv.textContent = output;
+            } else if (output) {
+                const outputDiv = document.createElement('div');
+                outputDiv.innerHTML = output;
                 terminalOutput.appendChild(outputDiv);
             }
             
@@ -382,17 +491,34 @@ if (terminalInput) {
             // Scroll to bottom
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
         } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
             if (historyIndex > 0) {
                 historyIndex--;
                 terminalInput.value = commandHistory[historyIndex];
             }
         } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
             if (historyIndex < commandHistory.length - 1) {
                 historyIndex++;
                 terminalInput.value = commandHistory[historyIndex];
             } else {
                 historyIndex = commandHistory.length;
                 terminalInput.value = '';
+            }
+        } else if (e.key === 'Tab') {
+            e.preventDefault();
+            const input = terminalInput.value;
+            const availableCommands = Object.keys(terminalCommands);
+            const matches = availableCommands.filter(cmd => cmd.startsWith(input));
+            
+            if (matches.length === 1) {
+                terminalInput.value = matches[0];
+            } else if (matches.length > 1) {
+                const output = document.createElement('div');
+                output.className = 'command-output';
+                output.textContent = matches.join('  ');
+                terminalOutput.appendChild(output);
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
             }
         }
     });
@@ -401,26 +527,30 @@ if (terminalInput) {
 // ==================== GITHUB STATS API ====================
 async function fetchGitHubStats() {
     try {
-        // Fetch user data
         const userResponse = await fetch('https://api.github.com/users/zoo-hair');
         const userData = await userResponse.json();
         
-        // Update stats
-        document.getElementById('total-repos').textContent = userData.public_repos;
-        document.getElementById('followers').textContent = userData.followers;
-        document.getElementById('following').textContent = userData.following;
-        document.getElementById('github-repos').textContent = userData.public_repos;
+        // Update stats safely
+        const updateElement = (id, value) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        };
+        
+        updateElement('total-repos', userData.public_repos);
+        updateElement('followers', userData.followers);
+        updateElement('following', userData.following);
+        updateElement('github-repos', userData.public_repos);
         
         // Fetch repositories for total stars
         const reposResponse = await fetch('https://api.github.com/users/zoo-hair/repos?per_page=100');
         const reposData = await reposResponse.json();
         
         const totalStars = reposData.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-        document.getElementById('total-stars').textContent = totalStars;
+        updateElement('total-stars', totalStars);
         
         // Get language statistics
         const languages = {};
-        for (const repo of reposData.slice(0, 10)) { // Top 10 repos
+        for (const repo of reposData.slice(0, 10)) {
             if (repo.language) {
                 languages[repo.language] = (languages[repo.language] || 0) + 1;
             }
@@ -450,15 +580,16 @@ async function fetchGitHubStats() {
     } catch (error) {
         console.error('Error fetching GitHub stats:', error);
         // Set default values on error
-        document.getElementById('total-repos').textContent = '13+';
-        document.getElementById('followers').textContent = '--';
-        document.getElementById('following').textContent = '--';
-        document.getElementById('total-stars').textContent = '--';
+        const updateElement = (id, value) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        };
+        updateElement('total-repos', '13+');
+        updateElement('followers', '--');
+        updateElement('following', '--');
+        updateElement('total-stars', '--');
     }
 }
-
-// Fetch GitHub stats on load
-window.addEventListener('load', fetchGitHubStats);
 
 // ==================== SNAKE GAME ====================
 const canvas = document.getElementById('snakeCanvas');
@@ -497,8 +628,9 @@ function addGameLog(message) {
 
 // Load high score
 let highScore = parseInt(localStorage.getItem('snakeHighScore')) || 0;
-if (document.getElementById('high-score')) {
-    document.getElementById('high-score').textContent = highScore;
+const highScoreEl = document.getElementById('high-score');
+if (highScoreEl) {
+    highScoreEl.textContent = highScore;
 }
 
 function startGame() {
@@ -512,9 +644,13 @@ function startGame() {
     gamePaused = false;
     gameOver = false;
     
-    document.getElementById('current-score').textContent = score;
-    document.getElementById('game-start-screen').style.display = 'none';
-    document.getElementById('game-over-screen').style.display = 'none';
+    const currentScoreEl = document.getElementById('current-score');
+    const gameStartScreen = document.getElementById('game-start-screen');
+    const gameOverScreen = document.getElementById('game-over-screen');
+    
+    if (currentScoreEl) currentScoreEl.textContent = score;
+    if (gameStartScreen) gameStartScreen.style.display = 'none';
+    if (gameOverScreen) gameOverScreen.style.display = 'none';
     
     addGameLog('System initialized.');
     addGameLog('Loading snake kernel...');
@@ -541,15 +677,20 @@ function gameLoop() {
 function clearCanvas() {
     if (!ctx) return;
     
-    // Background with subtle grid
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     ctx.strokeStyle = 'rgba(0, 255, 65, 0.05)';
     ctx.lineWidth = 1;
     for(let i=0; i<=canvas.width; i+=gridSize) {
-        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+        ctx.beginPath(); 
+        ctx.moveTo(i, 0); 
+        ctx.lineTo(i, canvas.height); 
+        ctx.stroke();
+        ctx.beginPath(); 
+        ctx.moveTo(0, i); 
+        ctx.lineTo(canvas.width, i); 
+        ctx.stroke();
     }
 }
 
@@ -564,14 +705,12 @@ function drawSnake() {
             ctx.shadowBlur = 15;
             ctx.shadowColor = '#00ff41';
         } else {
-            // Gradient effect for body
             const greenVal = Math.max(100, 255 - (index * 5));
             ctx.fillStyle = `rgb(0, ${greenVal}, 65)`;
             ctx.shadowBlur = 5;
             ctx.shadowColor = 'rgba(0, 255, 65, 0.5)';
         }
         
-        // Draw segment as a "data block"
         ctx.fillRect(
             segment.x * gridSize + 1,
             segment.y * gridSize + 1,
@@ -579,7 +718,6 @@ function drawSnake() {
             gridSize - 2
         );
         
-        // Add "connector" lines between segments
         if (index > 0) {
             ctx.strokeStyle = ctx.fillStyle;
             ctx.lineWidth = 2;
@@ -601,9 +739,9 @@ function moveSnake() {
     
     if (head.x === food.x && head.y === food.y) {
         score += 10;
-        document.getElementById('current-score').textContent = score;
+        const currentScoreEl = document.getElementById('current-score');
+        if (currentScoreEl) currentScoreEl.textContent = score;
         
-        // Speed up
         currentSpeed = Math.max(50, baseSpeed - Math.floor(score / 20) * 5);
         
         addGameLog(`Package installed: ${currentFoodType}.exe`);
@@ -612,7 +750,8 @@ function moveSnake() {
         if (score > highScore) {
             highScore = score;
             localStorage.setItem('snakeHighScore', highScore);
-            document.getElementById('high-score').textContent = highScore;
+            const highScoreEl = document.getElementById('high-score');
+            if (highScoreEl) highScoreEl.textContent = highScore;
         }
         
         placeFood();
@@ -624,18 +763,15 @@ function moveSnake() {
 function drawFood() {
     if (!ctx) return;
     
-    // Glowing food "node"
     const x = food.x * gridSize + gridSize / 2;
     const y = food.y * gridSize + gridSize / 2;
     
-    // Pulsing effect
     const pulse = Math.sin(Date.now() / 200) * 4;
     
     ctx.fillStyle = '#ff00ff';
     ctx.shadowBlur = 20 + pulse;
     ctx.shadowColor = '#ff00ff';
     
-    // Diamond shape for "node"
     ctx.beginPath();
     ctx.moveTo(x, y - (gridSize/2 - 2 + pulse/2));
     ctx.lineTo(x + (gridSize/2 - 2 + pulse/2), y);
@@ -644,7 +780,6 @@ function drawFood() {
     ctx.closePath();
     ctx.fill();
     
-    // Label
     ctx.shadowBlur = 0;
     ctx.fillStyle = '#fff';
     ctx.font = '9px "Press Start 2P"';
@@ -673,7 +808,6 @@ function endGame() {
     gameRunning = false;
     gameOver = true;
     
-    // Shake effect on death
     const container = document.querySelector('.game-canvas-container');
     if (container) {
         container.style.animation = 'glitch-anim 0.2s 3';
@@ -683,8 +817,11 @@ function endGame() {
     addGameLog('CRITICAL_FAILURE!');
     addGameLog('Segmentation fault (core dumped)');
     
-    document.getElementById('final-score').textContent = score;
-    document.getElementById('game-over-screen').style.display = 'block';
+    const finalScoreEl = document.getElementById('final-score');
+    const gameOverScreen = document.getElementById('game-over-screen');
+    
+    if (finalScoreEl) finalScoreEl.textContent = score;
+    if (gameOverScreen) gameOverScreen.style.display = 'block';
 }
 
 function restartGame() {
@@ -701,7 +838,6 @@ document.addEventListener('keydown', (e) => {
     
     if (!gameRunning) return;
     
-    // Pause
     if (e.key === ' ' || e.code === 'Space') {
         e.preventDefault();
         gamePaused = !gamePaused;
@@ -709,13 +845,11 @@ document.addEventListener('keydown', (e) => {
         return;
     }
     
-    // Restart
     if (e.key === 'r' || e.key === 'R') {
         restartGame();
         return;
     }
     
-    // Movement
     const key = e.key.toLowerCase();
     changeDirection(key);
 });
@@ -732,7 +866,6 @@ function changeDirection(key) {
     }
 }
 
-// Click to start
 if (canvas) {
     canvas.addEventListener('click', () => {
         if (!gameRunning && !gameOver) {
@@ -741,8 +874,8 @@ if (canvas) {
     });
 }
 
-// Make restartGame globally accessible
 window.restartGame = restartGame;
+window.changeDirection = changeDirection;
 
 // ==================== SMOOTH SCROLLING ====================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -773,7 +906,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements
 document.querySelectorAll('.about-card, .project-card, .skill-category, .contact-content > *, .github-stat-card').forEach(el => {
     el.style.opacity = '0';
     observer.observe(el);
@@ -909,7 +1041,7 @@ function initBackgroundMatrix() {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.fillStyle = '#00ff41'; // Green accent
+        ctx.fillStyle = '#00ff41';
         ctx.font = fontSize + 'px monospace';
         
         for (let i = 0; i < drops.length; i++) {
@@ -924,7 +1056,7 @@ function initBackgroundMatrix() {
         }
     }
     
-    setInterval(draw, 50); // Slower for subtlety and performance
+    setInterval(draw, 50);
 }
 
 function activateMatrixMode() {
@@ -952,7 +1084,7 @@ function activateMatrixMode() {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.fillStyle = '#00ff41'; // Primary green accent
+        ctx.fillStyle = '#00ff41';
         ctx.font = fontSize + 'px monospace';
         
         for (let i = 0; i < drops.length; i++) {
@@ -969,7 +1101,6 @@ function activateMatrixMode() {
     
     const matrixInterval = setInterval(drawMatrix, 35);
     
-    // Auto-remove after 10 seconds
     setTimeout(() => {
         clearInterval(matrixInterval);
         canvas.remove();
@@ -1004,18 +1135,8 @@ console.log('%c🎮 PLAYER STATS LOADED', 'color: #00ff41; font-family: monospac
 console.log('%cHey there, fellow developer! 👾', 'color: #00f7ff; font-family: monospace; font-size: 14px;');
 console.log('%cTry the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A', 'color: #ff00ff; font-family: monospace; font-size: 12px;');
 console.log('%cOr press Ctrl+~ to enter Terminal Mode!', 'color: #00ff41; font-family: monospace; font-size: 12px;');
+console.log('%cType "neofetch" in the terminal to see system info!', 'color: #00ff41; font-family: monospace; font-size: 12px;');
 console.log('%cWant to collaborate? Reach out at geraltofmalitola@gmail.com', 'color: #00ff41; font-family: monospace; font-size: 12px;');
-
-// ==================== PAGE LOAD ANIMATION ====================
-window.addEventListener('load', () => {
-    runBootSequence();
-    initBackgroundMatrix();
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 1s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-});
 
 // ==================== SKILL BARS ANIMATION ====================
 const skillObserver = new IntersectionObserver((entries) => {
@@ -1043,6 +1164,16 @@ function updateHUDClock() {
     }
 }
 setInterval(updateHUDClock, 1000);
+
+// ==================== HUD LATENCY ====================
+function updateHUDLatency() {
+    const latencyEl = document.getElementById('hud-latency');
+    if (latencyEl) {
+        const latency = Math.floor(Math.random() * 8) + 10;
+        latencyEl.textContent = `LATENCY: ${latency}ms`;
+    }
+}
+setInterval(updateHUDLatency, 3000);
 
 // ==================== TEXT DECRYPTION EFFECT ====================
 function decryptText(element, targetText, duration = 1000) {
@@ -1077,33 +1208,11 @@ document.querySelectorAll('.section-title').forEach(title => {
     decryptObserver.observe(title);
 });
 
-console.log('✅ Hacker HUD systems active.');
-// ==================== HUD LIVE FEED ====================
-function updateHUD() {
-    const clockEl = document.getElementById('hud-clock');
-    const latencyEl = document.getElementById('hud-latency');
-
-    // Update Clock
-    setInterval(() => {
-        const now = new Date();
-        const timeStr = now.getHours().toString().padStart(2, '0') + ':' + 
-                        now.getMinutes().toString().padStart(2, '0') + ':' + 
-                        now.getSeconds().toString().padStart(2, '0');
-        if (clockEl) clockEl.textContent = timeStr;
-    }, 1000);
-
-    // Update Latency (Random Jitter)
-    setInterval(() => {
-        const latency = Math.floor(Math.random() * 8) + 10; // Random between 10-18ms
-        if (latencyEl) latencyEl.textContent = `LATENCY: ${latency}ms`;
-    }, 3000);
-}
-
 // ==================== SCROLL REVEAL SYSTEM ====================
 function initScrollReveal() {
     const revealElements = document.querySelectorAll('.reveal');
     
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
@@ -1114,11 +1223,23 @@ function initScrollReveal() {
         rootMargin: '0px 0px -50px 0px'
     });
 
-    revealElements.forEach(el => observer.observe(el));
+    revealElements.forEach(el => revealObserver.observe(el));
 }
 
-// Initialize on load
+// ==================== PAGE LOAD INITIALIZATION ====================
 window.addEventListener('load', () => {
-    updateHUD();
+    runBootSequence();
+    initBackgroundMatrix();
+    fetchGitHubStats();
     initScrollReveal();
+    updateHUDClock();
+    updateHUDLatency();
+    
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 1s ease';
+        document.body.style.opacity = '1';
+    }, 100);
 });
+
+console.log('✅ All systems initialized. Hacker HUD active.');
