@@ -1,3 +1,56 @@
+// ==================== BIOS BOOT SEQUENCE ====================
+const bootMessages = [
+    "Z-BIOS v2.1.0 (C) 2026 ZOO-HAIR INC.",
+    "CPU: ANTIGRAVITY X-1 @ 4.20GHz",
+    "MEMORY CHECK: 65536KB OK",
+    "--------------------------------------",
+    "DETECTING PRIMARY MASTER... 512GB SSD",
+    "DETECTING PRIMARY SLAVE... NONE",
+    "NETWORK: DHAKA_NODE CONNECTING...",
+    "IP ADDRESS: 192.168.1.101",
+    "STATUS: CONNECTION ESTABLISHED",
+    "--------------------------------------",
+    "LOADING KERNEL...",
+    "MOUNTING /ROOT/PORTFOLIO...",
+    "INITIATING GUI...",
+    "SYSTEM READY."
+];
+
+async function runBootSequence() {
+    const bootScreen = document.getElementById('boot-screen');
+    const bootLog = document.getElementById('boot-log');
+    if (!bootScreen || !bootLog) return;
+
+    for (const msg of bootMessages) {
+        const line = document.createElement('div');
+        line.textContent = msg;
+        bootLog.appendChild(line);
+        
+        // Random slight delay for realism
+        await new Promise(resolve => setTimeout(resolve, Math.random() * 150 + 30));
+        
+        // Auto-scroll inside boot screen if needed
+        bootScreen.scrollTop = bootScreen.scrollHeight;
+    }
+
+    // Hold for a moment
+    await new Promise(resolve => setTimeout(resolve, 600));
+    
+    // Fade out and remove
+    bootScreen.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    bootScreen.style.opacity = '0';
+    bootScreen.style.transform = 'scale(1.1)';
+    
+    setTimeout(() => {
+        bootScreen.remove();
+        // Trigger initial decryption for the hero title since it's now visible
+        const heroTitle = document.querySelector('.hero-content h1');
+        if (heroTitle) {
+            decryptText(heroTitle, heroTitle.textContent);
+        }
+    }, 800);
+}
+
 // ==================== CUSTOM PIXEL CURSOR ====================
 const cursor = document.querySelector('.pixel-cursor');
 let mouseX = 0;
@@ -8,17 +61,24 @@ let cursorY = 0;
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    
+    // Enable custom cursor styles once mouse moves
+    if (cursor && !document.body.classList.contains('custom-cursor-active')) {
+        document.body.classList.add('custom-cursor-active');
+    }
 });
 
 function animateCursor() {
     const dx = mouseX - cursorX;
     const dy = mouseY - cursorY;
     
-    cursorX += dx * 0.1;
-    cursorY += dy * 0.1;
+    cursorX += dx * 0.15; // Slightly faster for better feel
+    cursorY += dy * 0.15;
     
     if (cursor) {
-        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        cursor.style.left = `${cursorX}px`;
+        cursor.style.top = `${cursorY}px`;
+        cursor.style.transform = 'translate(-50%, -50%)'; // Ensure it's centered
     }
     
     requestAnimationFrame(animateCursor);
@@ -29,12 +89,21 @@ animateCursor();
 // Interactive hover effects
 document.querySelectorAll('a, button, .project-card, .about-card, .skill-tag, .social-btn').forEach(element => {
     element.addEventListener('mouseenter', () => {
-        if (cursor) cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1.5)`;
+        if (cursor) cursor.classList.add('hovering');
     });
     
     element.addEventListener('mouseleave', () => {
-        if (cursor) cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1)`;
+        if (cursor) cursor.classList.remove('hovering');
     });
+});
+
+// Click effects
+document.addEventListener('mousedown', () => {
+    if (cursor) cursor.classList.add('clicking');
+});
+
+document.addEventListener('mouseup', () => {
+    if (cursor) cursor.classList.remove('clicking');
 });
 
 // ==================== TERMINAL MODE TOGGLE ====================
@@ -165,10 +234,10 @@ Frameworks:
   CSS3      ████████████████░░ 88%
 
 Tools:
-  Git, GitHub, VS Code, Linux, CLI, Vim, GCC, Maven
+  Git, GitHub, VS Code, Linux, CLI, Vim, GCC, Maven, IntelliJ, Clion, Antigravity, Gradle Groovy
 
 Creative:
-  Pixel Art, Sprite Design, Animation, UI/UX, Game Design
+  Pixel Art, Sprite Design, Animation, Game Design, tilemap creator
 `,
     
     contact: () => `
@@ -258,11 +327,20 @@ home/
     }
 };
 
+// Command history
+let commandHistory = [];
+let historyIndex = -1;
+
 // Process terminal commands
 if (terminalInput) {
     terminalInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const command = terminalInput.value.trim();
+            if (command) {
+                commandHistory.push(command);
+                historyIndex = commandHistory.length;
+            }
+            
             const parts = command.split(' ');
             const cmd = parts[0].toLowerCase();
             const args = parts.slice(1);
@@ -285,8 +363,11 @@ if (terminalInput) {
             // Handle special commands
             if (output === 'CLEAR_TERMINAL') {
                 terminalOutput.innerHTML = '';
-                const welcome = document.querySelector('.terminal-welcome').cloneNode(true);
-                terminalOutput.appendChild(welcome);
+                const welcomeArea = document.querySelector('.terminal-welcome');
+                if (welcomeArea) {
+                    const welcome = welcomeArea.cloneNode(true);
+                    terminalOutput.appendChild(welcome);
+                }
             } else {
                 const outputDiv = document.createElement('pre');
                 outputDiv.style.whiteSpace = 'pre-wrap';
@@ -300,6 +381,19 @@ if (terminalInput) {
             
             // Scroll to bottom
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        } else if (e.key === 'ArrowUp') {
+            if (historyIndex > 0) {
+                historyIndex--;
+                terminalInput.value = commandHistory[historyIndex];
+            }
+        } else if (e.key === 'ArrowDown') {
+            if (historyIndex < commandHistory.length - 1) {
+                historyIndex++;
+                terminalInput.value = commandHistory[historyIndex];
+            } else {
+                historyIndex = commandHistory.length;
+                terminalInput.value = '';
+            }
         }
     });
 }
@@ -369,6 +463,7 @@ window.addEventListener('load', fetchGitHubStats);
 // ==================== SNAKE GAME ====================
 const canvas = document.getElementById('snakeCanvas');
 const ctx = canvas ? canvas.getContext('2d') : null;
+const logElement = document.getElementById('game-event-log');
 
 const gridSize = 20;
 const tileCount = canvas ? canvas.width / gridSize : 20;
@@ -377,12 +472,28 @@ let snake = [{ x: 10, y: 10 }];
 let velocity = { x: 0, y: 0 };
 let food = { x: 15, y: 15 };
 let score = 0;
+let baseSpeed = 120;
+let currentSpeed = baseSpeed;
 let gameRunning = false;
 let gamePaused = false;
 let gameOver = false;
 
 const programmingLanguages = ['C', 'C++', 'Java', 'Python', 'JS', 'PHP', 'Ruby', 'Go', 'Rust', 'Swift'];
 let currentFoodType = programmingLanguages[0];
+
+function addGameLog(message) {
+    if (!logElement) return;
+    const line = document.createElement('div');
+    line.className = 'log-line';
+    line.textContent = `> ${message}`;
+    logElement.appendChild(line);
+    logElement.scrollTop = logElement.scrollHeight;
+    
+    // Keep only last 10 lines
+    while (logElement.children.length > 10) {
+        logElement.removeChild(logElement.firstChild);
+    }
+}
 
 // Load high score
 let highScore = parseInt(localStorage.getItem('snakeHighScore')) || 0;
@@ -396,6 +507,7 @@ function startGame() {
     snake = [{ x: 10, y: 10 }];
     velocity = { x: 0, y: 0 };
     score = 0;
+    currentSpeed = baseSpeed;
     gameRunning = true;
     gamePaused = false;
     gameOver = false;
@@ -404,6 +516,8 @@ function startGame() {
     document.getElementById('game-start-screen').style.display = 'none';
     document.getElementById('game-over-screen').style.display = 'none';
     
+    addGameLog('System initialized.');
+    addGameLog('Loading snake kernel...');
     placeFood();
     gameLoop();
 }
@@ -421,49 +535,79 @@ function gameLoop() {
         if (gameRunning && !gameOver) {
             gameLoop();
         }
-    }, 100);
+    }, currentSpeed);
 }
 
 function clearCanvas() {
     if (!ctx) return;
+    
+    // Background with subtle grid
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.strokeStyle = 'rgba(0, 255, 65, 0.05)';
+    ctx.lineWidth = 1;
+    for(let i=0; i<=canvas.width; i+=gridSize) {
+        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+    }
 }
 
 function drawSnake() {
     if (!ctx) return;
     
     snake.forEach((segment, index) => {
-        // Head is brighter
-        if (index === 0) {
+        const isHead = index === 0;
+        
+        if (isHead) {
             ctx.fillStyle = '#00ff41';
             ctx.shadowBlur = 15;
             ctx.shadowColor = '#00ff41';
         } else {
-            ctx.fillStyle = '#00cc33';
+            // Gradient effect for body
+            const greenVal = Math.max(100, 255 - (index * 5));
+            ctx.fillStyle = `rgb(0, ${greenVal}, 65)`;
             ctx.shadowBlur = 5;
-            ctx.shadowColor = '#00cc33';
+            ctx.shadowColor = 'rgba(0, 255, 65, 0.5)';
         }
         
+        // Draw segment as a "data block"
         ctx.fillRect(
-            segment.x * gridSize,
-            segment.y * gridSize,
+            segment.x * gridSize + 1,
+            segment.y * gridSize + 1,
             gridSize - 2,
             gridSize - 2
         );
+        
+        // Add "connector" lines between segments
+        if (index > 0) {
+            ctx.strokeStyle = ctx.fillStyle;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(segment.x * gridSize + gridSize/2, segment.y * gridSize + gridSize/2);
+            ctx.lineTo(snake[index-1].x * gridSize + gridSize/2, snake[index-1].y * gridSize + gridSize/2);
+            ctx.stroke();
+        }
     });
     
     ctx.shadowBlur = 0;
 }
 
 function moveSnake() {
+    if (velocity.x === 0 && velocity.y === 0) return;
+    
     const head = { x: snake[0].x + velocity.x, y: snake[0].y + velocity.y };
     snake.unshift(head);
     
-    // Check if food eaten
     if (head.x === food.x && head.y === food.y) {
         score += 10;
         document.getElementById('current-score').textContent = score;
+        
+        // Speed up
+        currentSpeed = Math.max(50, baseSpeed - Math.floor(score / 20) * 5);
+        
+        addGameLog(`Package installed: ${currentFoodType}.exe`);
+        addGameLog(`Data throughput: ${1000 - currentSpeed}MB/s`);
         
         if (score > highScore) {
             highScore = score;
@@ -480,26 +624,32 @@ function moveSnake() {
 function drawFood() {
     if (!ctx) return;
     
-    ctx.fillStyle = '#ff00ff';
-    ctx.shadowBlur = 20;
-    ctx.shadowColor = '#ff00ff';
-    ctx.fillRect(
-        food.x * gridSize,
-        food.y * gridSize,
-        gridSize - 2,
-        gridSize - 2
-    );
+    // Glowing food "node"
+    const x = food.x * gridSize + gridSize / 2;
+    const y = food.y * gridSize + gridSize / 2;
     
-    // Draw language text
+    // Pulsing effect
+    const pulse = Math.sin(Date.now() / 200) * 4;
+    
+    ctx.fillStyle = '#ff00ff';
+    ctx.shadowBlur = 20 + pulse;
+    ctx.shadowColor = '#ff00ff';
+    
+    // Diamond shape for "node"
+    ctx.beginPath();
+    ctx.moveTo(x, y - (gridSize/2 - 2 + pulse/2));
+    ctx.lineTo(x + (gridSize/2 - 2 + pulse/2), y);
+    ctx.lineTo(x, y + (gridSize/2 - 2 + pulse/2));
+    ctx.lineTo(x - (gridSize/2 - 2 + pulse/2), y);
+    ctx.closePath();
+    ctx.fill();
+    
+    // Label
     ctx.shadowBlur = 0;
     ctx.fillStyle = '#fff';
-    ctx.font = '10px "Press Start 2P"';
+    ctx.font = '9px "Press Start 2P"';
     ctx.textAlign = 'center';
-    ctx.fillText(
-        currentFoodType,
-        food.x * gridSize + gridSize / 2,
-        food.y * gridSize + gridSize / 2 + 3
-    );
+    ctx.fillText(currentFoodType, x, y + 25);
 }
 
 function placeFood() {
@@ -507,34 +657,31 @@ function placeFood() {
     food.y = Math.floor(Math.random() * tileCount);
     currentFoodType = programmingLanguages[Math.floor(Math.random() * programmingLanguages.length)];
     
-    // Make sure food doesn't spawn on snake
-    const onSnake = snake.some(segment => segment.x === food.x && segment.y === food.y);
-    if (onSnake) {
-        placeFood();
-    }
+    if (snake.some(s => s.x === food.x && s.y === food.y)) placeFood();
 }
 
 function checkCollision() {
     const head = snake[0];
     
-    // Wall collision
-    if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+    if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount ||
+        snake.slice(1).some(s => s.x === head.x && s.y === head.y)) {
         endGame();
-        return;
-    }
-    
-    // Self collision
-    for (let i = 1; i < snake.length; i++) {
-        if (head.x === snake[i].x && head.y === snake[i].y) {
-            endGame();
-            return;
-        }
     }
 }
 
 function endGame() {
     gameRunning = false;
     gameOver = true;
+    
+    // Shake effect on death
+    const container = document.querySelector('.game-canvas-container');
+    if (container) {
+        container.style.animation = 'glitch-anim 0.2s 3';
+        setTimeout(() => container.style.animation = '', 600);
+    }
+    
+    addGameLog('CRITICAL_FAILURE!');
+    addGameLog('Segmentation fault (core dumped)');
     
     document.getElementById('final-score').textContent = score;
     document.getElementById('game-over-screen').style.display = 'block';
@@ -570,17 +717,20 @@ document.addEventListener('keydown', (e) => {
     
     // Movement
     const key = e.key.toLowerCase();
-    
-    if ((key === 'arrowup' || key === 'w') && velocity.y === 0) {
+    changeDirection(key);
+});
+
+function changeDirection(key) {
+    if ((key === 'arrowup' || key === 'w' || key === 'up') && velocity.y === 0) {
         velocity = { x: 0, y: -1 };
-    } else if ((key === 'arrowdown' || key === 's') && velocity.y === 0) {
+    } else if ((key === 'arrowdown' || key === 's' || key === 'down') && velocity.y === 0) {
         velocity = { x: 0, y: 1 };
-    } else if ((key === 'arrowleft' || key === 'a') && velocity.x === 0) {
+    } else if ((key === 'arrowleft' || key === 'a' || key === 'left') && velocity.x === 0) {
         velocity = { x: -1, y: 0 };
-    } else if ((key === 'arrowright' || key === 'd') && velocity.x === 0) {
+    } else if ((key === 'arrowright' || key === 'd' || key === 'right') && velocity.x === 0) {
         velocity = { x: 1, y: 0 };
     }
-});
+}
 
 // Click to start
 if (canvas) {
@@ -735,9 +885,49 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-function activateMatrixMode() {
-    document.body.style.filter = 'hue-rotate(180deg)';
+// ==================== BACKGROUND MATRIX RAIN ====================
+function initBackgroundMatrix() {
+    const canvas = document.getElementById('matrix-bg');
+    if (!canvas) return;
     
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    const binary = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+    
+    function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00ff41'; // Green accent
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+            const text = binary[Math.floor(Math.random() * binary.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            
+            drops[i]++;
+        }
+    }
+    
+    setInterval(draw, 50); // Slower for subtlety and performance
+}
+
+function activateMatrixMode() {
     const canvas = document.createElement('canvas');
     canvas.style.position = 'fixed';
     canvas.style.top = '0';
@@ -746,23 +936,23 @@ function activateMatrixMode() {
     canvas.style.height = '100%';
     canvas.style.zIndex = '9997';
     canvas.style.pointerEvents = 'none';
-    canvas.style.opacity = '0.3';
+    canvas.style.opacity = '0.5';
     document.body.appendChild(canvas);
     
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+    const matrix = "01";
     const fontSize = 16;
     const columns = canvas.width / fontSize;
     const drops = Array(Math.floor(columns)).fill(1);
     
     function drawMatrix() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.fillStyle = '#0F0';
+        ctx.fillStyle = '#00ff41'; // Primary green accent
         ctx.font = fontSize + 'px monospace';
         
         for (let i = 0; i < drops.length; i++) {
@@ -779,13 +969,13 @@ function activateMatrixMode() {
     
     const matrixInterval = setInterval(drawMatrix, 35);
     
+    // Auto-remove after 10 seconds
     setTimeout(() => {
-        document.body.style.filter = '';
         clearInterval(matrixInterval);
         canvas.remove();
     }, 10000);
     
-    console.log('🎮 KONAMI CODE ACTIVATED! Matrix mode enabled for 10 seconds.');
+    console.log('🎮 Matrix mode enabled with binary rain!');
 }
 
 // ==================== PROJECT CARD TILT ====================
@@ -818,6 +1008,8 @@ console.log('%cWant to collaborate? Reach out at geraltofmalitola@gmail.com', 'c
 
 // ==================== PAGE LOAD ANIMATION ====================
 window.addEventListener('load', () => {
+    runBootSequence();
+    initBackgroundMatrix();
     document.body.style.opacity = '0';
     setTimeout(() => {
         document.body.style.transition = 'opacity 1s ease';
@@ -842,4 +1034,91 @@ document.querySelectorAll('.skill-category').forEach(category => {
     skillObserver.observe(category);
 });
 
-console.log('✅ All systems loaded successfully!');
+// ==================== HUD CLOCK ====================
+function updateHUDClock() {
+    const clock = document.getElementById('hud-clock');
+    if (clock) {
+        const now = new Date();
+        clock.textContent = now.toLocaleTimeString('en-US', { hour12: false });
+    }
+}
+setInterval(updateHUDClock, 1000);
+
+// ==================== TEXT DECRYPTION EFFECT ====================
+function decryptText(element, targetText, duration = 1000) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+';
+    let iteration = 0;
+    const interval = setInterval(() => {
+        element.textContent = targetText.split('')
+            .map((char, index) => {
+                if (index < iteration) return targetText[index];
+                return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join('');
+        
+        if (iteration >= targetText.length) clearInterval(interval);
+        iteration += targetText.length / 30;
+    }, 30);
+}
+
+// Observe section titles for decryption
+const decryptObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const title = entry.target;
+            const originalText = title.getAttribute('data-text') || title.textContent;
+            decryptText(title, originalText);
+            decryptObserver.unobserve(title);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.section-title').forEach(title => {
+    decryptObserver.observe(title);
+});
+
+console.log('✅ Hacker HUD systems active.');
+// ==================== HUD LIVE FEED ====================
+function updateHUD() {
+    const clockEl = document.getElementById('hud-clock');
+    const latencyEl = document.getElementById('hud-latency');
+
+    // Update Clock
+    setInterval(() => {
+        const now = new Date();
+        const timeStr = now.getHours().toString().padStart(2, '0') + ':' + 
+                        now.getMinutes().toString().padStart(2, '0') + ':' + 
+                        now.getSeconds().toString().padStart(2, '0');
+        if (clockEl) clockEl.textContent = timeStr;
+    }, 1000);
+
+    // Update Latency (Random Jitter)
+    setInterval(() => {
+        const latency = Math.floor(Math.random() * 8) + 10; // Random between 10-18ms
+        if (latencyEl) latencyEl.textContent = `LATENCY: ${latency}ms`;
+    }, 3000);
+}
+
+// ==================== SCROLL REVEAL SYSTEM ====================
+function initScrollReveal() {
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+}
+
+// Initialize on load
+window.addEventListener('load', () => {
+    updateHUD();
+    initScrollReveal();
+});

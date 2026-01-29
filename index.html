@@ -3,16 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juhair Islam Sami | Game Dev & Code Wizard</title>
+    <title>Juhair Islam Sami | Game Dev & Code Wizard | Prompt Engineer | Cyber Security Enthusiast | Code Janitor</title>
+    <meta name="description" content="Portfolio of Juhair Islam Sami - Hobbiest Game Developer, CS Student, and Pixel Artist. Specializing in retro-style games, CLI tools, and prompt engineering.">
+    <meta name="keywords" content="Juhair Islam Sami, Game Developer, CS Student, Pixel Artist, Portfolio, Web Development, Retro Games">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zoo-hair.github.io/">
+    <meta property="og:title" content="Juhair Islam Sami | Game Dev & Code Wizard">
+    <meta property="og:description" content="Explore the projects and skills of Juhair Islam Sami, a passionate hobbuest Game Developer and CS Student.">
+    <meta property="og:image" content="https://zoo-hair.github.io/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zoo-hair.github.io/">
+    <meta property="twitter:title" content="Juhair Islam Sami | Game Dev & Code Wizard">
+    <meta property="twitter:description" content="Explore the projects and skills of Juhair Islam Sami, a passionate Game Developer and CS Student.">
+    <meta property="twitter:image" content="https://zoo-hair.github.io/og-image.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles-v2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Outfit:wght@300;400;700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- BIOS Boot Screen -->
+    <div id="boot-screen">
+        <div class="boot-content">
+            <div id="boot-log"></div>
+            <div class="boot-cursor">_</div>
+        </div>
+    </div>
+
+    <!-- Background Matrix Rain -->
+    <canvas id="matrix-bg"></canvas>
+    <div class="scanline-bar"></div>
+
+    <!-- Cyber Vortex 3D Grid -->
+    <div class="vortex-container">
+        <div class="vortex-grid"></div>
+    </div>
+
     <!-- CRT Screen Effect Overlay -->
     <div class="crt-overlay"></div>
     <div class="scanlines"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- HUD Elements -->
+    <div class="hud-top-left">
+        <div class="hud-line">SYSTEM: ONLINE</div>
+        <div class="hud-line">SECURITY: MAX</div>
+        <div class="hud-line" id="hud-latency">LATENCY: 12ms</div>
+    </div>
+    <div class="hud-top-right">
+        <div class="hud-line" id="hud-clock">00:00:00</div>
+        <div class="hud-line">LOCATION: DHAKA_NODE</div>
+    </div>
+    <div class="hud-bottom-left">
+        <div class="hud-line">USER: zoo-hair</div>
+        <div class="hud-line">OS: ANTIGRAVITY</div>
+    </div>
 
     <!-- Pixel Cursor -->
     <div class="pixel-cursor"></div>
@@ -47,6 +97,7 @@
         <section id="home" class="hero-section">
             <div class="stars-bg"></div>
             <div class="hero-content">
+                <h1 class="hero-title">Hello, I'm Juhair</h1>
                 <div class="terminal-window">
                     <div class="terminal-header">
                         <span class="terminal-dot red"></span>
@@ -162,11 +213,37 @@
                                     <span class="score-value" id="high-score">0</span>
                                 </div>
                             </div>
+                            <div class="game-log-container">
+                                <div class="log-header">SYSTEM_LOG</div>
+                                <div id="game-event-log" class="game-event-log">
+                                    <div class="log-line">> Initiating cyber-snake...</div>
+                                    <div class="log-line">> Awaiting user input...</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="game-canvas-container">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <div class="terminal-dot red"></div>
+                                <div class="terminal-dot yellow"></div>
+                                <div class="terminal-dot green"></div>
+                            </div>
+                            <div class="terminal-title">CYBER_SNAKE.EXE</div>
+                        </div>
                         <canvas id="snakeCanvas" width="400" height="400"></canvas>
+                        
+                        <!-- Virtual D-Pad for Mobile -->
+                        <div class="game-controls-mobile">
+                            <button class="d-btn up" onclick="changeDirection('up')">▲</button>
+                            <div class="d-row">
+                                <button class="d-btn left" onclick="changeDirection('left')">◀</button>
+                                <button class="d-btn down" onclick="changeDirection('down')">▼</button>
+                                <button class="d-btn right" onclick="changeDirection('right')">▶</button>
+                            </div>
+                        </div>
+
                         <div id="game-over-screen" class="game-over-screen" style="display: none;">
                             <h3>GAME OVER</h3>
                             <p>Final Score: <span id="final-score">0</span></p>
@@ -182,12 +259,12 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="about-section">
+        <section id="about" class="about-section reveal">
             <div class="container">
                 <h2 class="section-title glitch" data-text="[ ABOUT_ME ]">[ ABOUT_ME ]</h2>
                 
                 <div class="about-content">
-                    <div class="about-card">
+                    <div class="about-card reveal">
                         <div class="card-header">
                             <span class="card-icon">🧑‍💻</span>
                             <h3>WHO AM I?</h3>
@@ -197,7 +274,7 @@
                         </div>
                     </div>
 
-                    <div class="about-card">
+                    <div class="about-card reveal">
                         <div class="card-header">
                             <span class="card-icon">🎯</span>
                             <h3>CURRENT QUEST</h3>
@@ -213,7 +290,7 @@
                         </div>
                     </div>
 
-                    <div class="about-card">
+                    <div class="about-card reveal">
                         <div class="card-header">
                             <span class="card-icon">⚡</span>
                             <h3>FUN FACTS</h3>
@@ -240,84 +317,45 @@
         <!-- Projects Section -->
         <section id="projects" class="projects-section">
             <div class="container">
-                <h2 class="section-title glitch" data-text="[ PROJECTS ]">[ PROJECTS ]</h2>
+                <h2 class="section-title glitch" data-text="[ FEATURED_PROJECTS ]">[ FEATURED_PROJECTS ]</h2>
                 
                 <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <span class="project-status complete">✅ COMPLETE</span>
-                            <span class="project-tech">C • File I/O</span>
-                        </div>
-                        <div class="project-icon">🔐</div>
-                        <h3 class="project-title">CLI Encryption Tool</h3>
-                        <p class="project-desc">Command-line encryption utility built from scratch in C with custom algorithms and file handling.</p>
-                        <div class="project-footer">
-                            <a href="https://github.com/zoo-hair" class="project-link" target="_blank">VIEW CODE →</a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
+                    <div class="project-card reveal">
                         <div class="project-header">
                             <span class="project-status live">🎮 LIVE</span>
-                            <span class="project-tech">Phaser 3 • JS</span>
+                            <span class="project-tech">JS • Multi-player</span>
                         </div>
-                        <div class="project-icon">🕹️</div>
-                        <h3 class="project-title">Retro Pixel Office Adventure</h3>
-                        <p class="project-desc">2D platformer with hand-crafted pixel art, smooth animations, and nostalgic gameplay mechanics.</p>
+                        <div class="project-icon">🏢</div>
+                        <h3 class="project-title">OfficeVerse</h3>
+                        <p class="project-desc">The ultimate multiplayer virtual office. Work, collaborate, and interact in a real-time smart world architecture.</p>
                         <div class="project-footer">
-                            <a href="https://github.com/zoo-hair" class="project-link" target="_blank">PLAY GAME →</a>
+                            <a href="https://github.com/zoo-hair/OfficeVerse-" class="project-link" target="_blank">DEPLOY NODE →</a>
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <div class="project-card reveal">
                         <div class="project-header">
-                            <span class="project-status wip">🔨 BUILDING</span>
-                            <span class="project-tech">Spring Boot • Java</span>
+                            <span class="project-status complete">🔐 SECURE</span>
+                            <span class="project-tech">Java • CLI</span>
                         </div>
-                        <div class="project-icon">🌐</div>
-                        <h3 class="project-title">REST API Service</h3>
-                        <p class="project-desc">Full-featured RESTful API with authentication, data validation, and comprehensive documentation.</p>
+                        <div class="project-icon">🤫</div>
+                        <h3 class="project-title">Whisper_shHHH</h3>
+                        <p class="project-desc">A deep-dive into historical and modern cryptography. Features Morse, Caesar, and custom 'LetHimCook' ciphers.</p>
                         <div class="project-footer">
-                            <a href="https://github.com/zoo-hair" class="project-link" target="_blank">VIEW PROGRESS →</a>
+                            <a href="https://github.com/zoo-hair/Whisper_shHHH" class="project-link" target="_blank">DECRYPT CODE →</a>
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <div class="project-card reveal">
                         <div class="project-header">
-                            <span class="project-status complete">🏆 3HR BUILD</span>
-                            <span class="project-tech">Java • APIs</span>
-                        </div>
-                        <div class="project-icon">⚡</div>
-                        <h3 class="project-title">Hackathon Mini Apps</h3>
-                        <p class="project-desc">Collection of rapid-prototype applications built during 3-hour hackathon challenges.</p>
-                        <div class="project-footer">
-                            <a href="https://github.com/zoo-hair" class="project-link" target="_blank">EXPLORE →</a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <span class="project-status wip">🎨 WIP</span>
-                            <span class="project-tech">Python • PIL</span>
-                        </div>
-                        <div class="project-icon">🖼️</div>
-                        <h3 class="project-title">Pixel Art Generator</h3>
-                        <p class="project-desc">Automated tool for converting images to pixel art with customizable palettes and resolutions.</p>
-                        <div class="project-footer">
-                            <a href="https://github.com/zoo-hair" class="project-link" target="_blank">COMING SOON →</a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <span class="project-status complete">✅ COMPLETE</span>
-                            <span class="project-tech">C</span>
+                            <span class="project-status complete">✅ SYSTEM</span>
+                            <span class="project-tech">C • Structured</span>
                         </div>
                         <div class="project-icon">🎫</div>
-                        <h3 class="project-title">Ticket Management System</h3>
-                        <p class="project-desc">SPL Lab final project - command-line ticket booking system with user authentication.</p>
+                        <h3 class="project-title">SPL Ticket System</h3>
+                        <p class="project-desc">Trimester final project for SPL Lab. A robust ticketing system with user authentication and database logic in C.</p>
                         <div class="project-footer">
-                            <a href="https://github.com/zoo-hair/spl_lab_project_ticket_system" class="project-link" target="_blank">VIEW CODE →</a>
+                            <a href="https://github.com/zoo-hair/spl_lab_project_ticket_system" class="project-link" target="_blank">ACCESS DATABASE →</a>
                         </div>
                     </div>
                 </div>
@@ -330,7 +368,7 @@
                 <h2 class="section-title glitch" data-text="[ TECH_STACK ]">[ TECH_STACK ]</h2>
                 
                 <div class="skills-container">
-                    <div class="skill-category">
+                    <div class="skill-category reveal">
                         <h3 class="category-title">💻 LANGUAGES</h3>
                         <div class="skill-grid">
                             <div class="skill-item">
@@ -361,7 +399,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-category">
+                    <div class="skill-category reveal">
                         <h3 class="category-title">🎮 GAME DEV & FRAMEWORKS</h3>
                         <div class="skill-grid">
                             <div class="skill-item">
@@ -393,6 +431,11 @@
                             <span class="skill-tag">Git</span>
                             <span class="skill-tag">GitHub</span>
                             <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">IntelliJ</span>
+                            <span class="skill-tag">CLion</span>
+                            <span class="skill-tag">Antigravity</span>
+                            <span class="skill-tag">Tiled</span>
+                            <span class="skill-tag">Gradle Groovy</span>
                             <span class="skill-tag">Linux</span>
                             <span class="skill-tag">CLI</span>
                             <span class="skill-tag">Vim</span>
@@ -401,7 +444,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-category">
+                    <div class="skill-category reveal">
                         <h3 class="category-title">🎨 CREATIVE</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Pixel Art</span>
@@ -414,7 +457,7 @@
                 </div>
 
                 <!-- Player Stats -->
-                <div class="player-stats-box">
+                <div class="player-stats-box reveal">
                     <div class="stats-header">
                         <span class="stats-icon">🎮</span>
                         <h3>PLAYER STATS</h3>
@@ -511,7 +554,7 @@
                         Made with 💚 and ☕ by Juhair Islam Sami
                     </p>
                     <p class="footer-quote">"If it can be imagined, it can be coded!"</p>
-                    <p class="footer-copyright">© 2025 • Powered by pixels and passion</p>
+                    <p class="footer-copyright">© 2026 • Powered by pixels and passion</p>
                 </div>
             </div>
         </footer>
@@ -549,6 +592,6 @@
         </div>
     </div>
 
-    <script src="script-v2.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
