@@ -1,0 +1,119 @@
+.container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.themeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.themeCard {
+  background: var(--explorer-bg);
+  border: 1px solid var(--explorer-border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.themeCard:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.activeCard {
+  border: 2px solid var(--accent-color);
+  background: var(--explorer-hover-bg);
+}
+
+.themePreview {
+  width: 100%;
+  height: 120px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.previewTop {
+  height: 20px;
+  width: 100%;
+}
+
+.previewBody {
+  flex: 1;
+  display: flex;
+}
+
+.previewSidebar {
+  width: 30%;
+  height: 100%;
+}
+
+.previewContent {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewIcon {
+  font-size: 2.5rem;
+  opacity: 0.8;
+}
+
+.themeName {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+/* Theme Previews Colors */
+.githubPreview .previewTop { background-color: #1f2428; }
+.githubPreview .previewSidebar { background-color: #1f2428; }
+.githubPreview .previewContent { background-color: #24292e; }
+
+.draculaPreview .previewTop { background-color: #1e1f29; }
+.draculaPreview .previewSidebar { background-color: #21222c; }
+.draculaPreview .previewContent { background-color: #282a36; }
+
+.ayuDarkPreview .previewTop { background-color: #1f2428; }
+.ayuDarkPreview .previewSidebar { background-color: #0a0e14; }
+.ayuDarkPreview .previewContent { background-color: #0a0e14; }
+
+.ayuMiragePreview .previewTop { background-color: #1f2428; }
+.ayuMiragePreview .previewSidebar { background-color: #1f2430; }
+.ayuMiragePreview .previewContent { background-color: #1f2430; }
+
+.nordPreview .previewTop { background-color: #1f2428; }
+.nordPreview .previewSidebar { background-color: #2e3440; }
+.nordPreview .previewContent { background-color: #3b4252; }
+
+.nightOwlPreview .previewTop { background-color: #011627; }
+.nightOwlPreview .previewSidebar { background-color: #01111d; }
+.nightOwlPreview .previewContent { background-color: #0b2942; }
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+  .themeGrid {
+    grid-template-columns: 1fr;
+  }
+}

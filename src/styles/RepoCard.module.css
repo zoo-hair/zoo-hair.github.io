@@ -1,0 +1,40 @@
+.card {
+  padding: 1.5rem;
+  background: var(--tab-bg);
+  border: 1px solid var(--explorer-border);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  background: var(--tab-active-bg);
+  border-color: var(--accent-color);
+}
+
+.card h4 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

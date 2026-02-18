@@ -1,0 +1,61 @@
+.terminal {
+  height: 35vh;
+  background: var(--terminal-bg);
+  border-top: 1px solid var(--terminal-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 35px;
+  background: var(--terminal-header-bg);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  color: var(--text-color);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.headerTabs {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.headerTab {
+  padding: 0 1rem;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.activeTab {
+  opacity: 1;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.terminalContent {
+  flex: 1;
+  padding: 1rem;
+  color: var(--text-color);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  overflow-y: auto;
+}
+
+.prompt {
+  color: var(--accent-color);
+  margin-right: 0.5rem;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  outline: none;
+}

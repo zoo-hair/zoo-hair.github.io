@@ -1,97 +1,110 @@
-# 🎮 zoo-hair - The Cinematic Hacker Portfolio v3.0
+# 🎮 zoo-hair - The Cinematic Hacker Portfolio v4.0 (Next.js Edition)
 
-A high-performance, retro-futuristic portfolio immersive experience featuring a **BIOS Boot Sequence**, **Cyber-Vortex 3D Background**, and a premium **Hacker Aesthetic**.
+A high-performance, VSCode-themed portfolio featuring a **Next.js App Router**, **Tailwind CSS**, and a premium **Developer Aesthetic**.
 
-![Status](https://img.shields.io/badge/Status-Operational-00ff41?style=for-the-badge&logo=target)
-![Version](https://img.shields.io/badge/System-v3.0_Antigravity-ff00ff?style=for-the-badge&logo=linux)
-![Aesthetic](https://img.shields.io/badge/Theme-Hacker_Green-00f7ff?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Operational-007ACC?style=for-the-badge&logo=visual-studio-code)
+![Version](https://img.shields.io/badge/System-v4.0_Next.js-000000?style=for-the-badge&logo=next.js)
+![Aesthetic](https://img.shields.io/badge/Theme-VS_Code_Dark-252526?style=for-the-badge)
 
 ---
 
-## 🚀 The v3.0 "Antigravity" Overhaul
+## 🚀 The v4.0 "Next.js" Overhaul
 
-### 📺 1. Cinematic BIOS Boot
-Experience a nostalgic, high-accuracy **BIOS Boot Sequence** upon entry.
-- Real-time logging of system initialization.
-- Retro terminal font and blinking cursor.
-- Smooth transition into the main operating environment.
+### 📺 1. Visual Studio Code Theme
 
-### 🌌 2. Depth & Dimension (Cyber-Vortex)
-- **3D Grid Vortex**: A moving perspective grid that creates a sense of traveling through cyberspace.
-- **Pure Black (#000000)**: Maximum contrast for a true OLED-optimized hacker feel.
-- **CRT Simulation**: High-end scanlines, CRT flicker, and a radial vignette effect to simulate vintage hardware.
+Experience a familiar developer environment:
 
-### 🎨 3. UI/UX 2.0 (Premium Typography)
-- **Advanced Font Pairings**: 
-  - `Outfit`: Modern, sleek body text for high readability.
-  - `Space Grotesk`: Technical headers with a "NASA Lab" identity.
-  - `Press Start 2P` & `VT323`: Preserving the classic 8-bit aesthetic for terminal components.
-- **Glitch-Interactive Buttons**:
-  - **Chromatic Aberration**: Buttons that "split" into RGB colors on hover.
-  - **3D Pixel Border**: Tactile, pseudo-3D borders for a physical feel.
-  - **Scanline Inlays**: Dynamic patterns that react to user interaction.
+- **Activity Bar & Sidebar**: Navigation styled like the VSCode explorer.
+- **Tabs & Breadcrumbs**: Dynamic top bar reflecting your current "file" (page).
+- **Status Bar**: Real-time mock data and decorative elements.
+
+### ⚡ 2. Modern Tech Stack
+
+- **Next.js 14+**: App Router for routing and layout.
+- **Tailwind CSS v4**: Utility-first styling with custom properties for theming.
+- **Lucide React**: Crisp, consisent icons.
+- **TypeScript**: Type-safe development.
 
 ---
 
 ## 📁 Featured Projects
 
+### 🏃‍♂️ [Recompass](https://github.com/zoo-hair/Recompass)
+
+#### AI-Powered Fitness Insights
+
+- Track and spot trends in caloric intake with personalized AI recommendations.
+- Built with Spring Boot, TypeScript, and OpenRouter AI.
+
 ### 🏢 [OfficeVerse-](https://github.com/zoo-hair/OfficeVerse-)
-**Multilayer Virtual Workspace**
+
+#### Multilayer Virtual Workspace
+
 - Real-time multiplayer interaction in a smart office environment.
-- Built with high-performance JS and custom world architecture.
+- Built with Node.js, Socket.io, and MongoDB.
+
+### 🌃 [Cyberpunk Noir](https://github.com/zoo-hair/Cyberpunk-Noir-theme-for-Obsidian)
+
+#### Obsidian Aesthetic Theme
+
+- High-contrast, neon-aesthetic theme designed for futuristic writing.
+- Custom CSS design for deep focus.
 
 ### 🤫 [Whisper_shHHH](https://github.com/zoo-hair/Whisper_shHHH)
-**Advanced Cryptography CLI**
-- Deep-dive into historical ciphers (Morse, Caesar) and modern logic.
-- Features the custom **'LetHimCook'** position-shift algorithm.
 
-### 🎫 [SPL Ticket System](https://github.com/zoo-hair/spl_lab_project_ticket_system)
-**Robust Management System**
-- Trimester final project in **C** focusing on structured programming.
-- User authentication, database logic, and secure transaction handling.
+#### Secure Messaging App
 
----
-
-## 🐍 Built-In Terminal & Games
-
-### **Cyber-Snake.exe**
-- Integrated directly into the HUD suite.
-- Features a terminal-style header and real-time event logs.
-- Dynamic speed progression based on score.
-
-### **Terminal Mode (Ctrl + ~)**
-- Full-screen CLI experience.
-- Commands: `matrix`, `whoami`, `projects`, `clear`, `exit`.
-- Working directory simulation and hidden easter eggs.
+- Desktop messaging focused on privacy and minimalist security.
+- Features AES encryption and Java-based secure networking.
 
 ---
 
 ## 🔧 Technical Stack
 
-| Category | Technologies |
-| :--- | :--- |
-| **Logic** | C, Java, Python, JavaScript |
-| **Front** | HTML5, CSS3, Vanilla JS |
-| **Game Dev** | Phaser 3, Tiled |
-| **Tools** | IntelliJ, CLion, VS Code, Git, Gradle, Antigravity AI |
+| Category      | Technologies                         |
+| :------------ | :----------------------------------- |
+| **Framework** | Next.js (React), TypeScript          |
+| **Styling**   | Tailwind CSS, PostCSS                |
+| **Icons**     | Lucide React                         |
+| **Tools**     | VS Code, Git, ESLint, Antigravity AI |
 
 ---
 
-## 🎯 Keyboard Directives
+## 🏃‍♂️ Running Locally
 
-- **`Ctrl + ~`**: Deploy/Retract System Terminal
-- **`SPACE`**: Initialize/Pause Cyber-Snake
-- **`R`**: Reset Game Matrix
-- **`Konami Code`**: ↑↑↓↓←→←→BA (System Secret)
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/zoo-hair/zoo-hair.github.io.git
+   cd zoo-hair.github.io
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production**
+
+   ```bash
+   npm run build
+   ```
 
 ---
 
 ## 📄 License & Credits
 
-Designed with 💚, ☕, and **Antigravity AI**.
-Open-source under the MIT license. Feel free to fork and customize your own digital hub.
+Designed with 💙 and ☕ by **Juhair Islam Sami**.
+Open-source under the MIT license.
 
-**"If it can be imagined, it can be coded!"**
+### "If it can be imagined, it can be coded!"
 
 ---
 

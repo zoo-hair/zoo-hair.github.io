@@ -1,0 +1,36 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--explorer-border);
+  border-radius: 10px;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 4px solid var(--accent-color);
+}
+
+.userInfo h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.userInfo p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.repos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
