@@ -22,9 +22,9 @@ export const projects: Project[] = [
     description:
       'A modern office management and workspace visualization platform designed to streamline team collaboration and resource tracking.',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600',
-    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.io'],
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.io', 'Tailwind CSS', 'Phaser.js'],
     source_code: 'https://github.com/zoo-hair/OfficeVerse-',
-    demo: 'https://office-verse.vercel.app',
+    demo: 'https://officeverse.netlify.app/',
   },
   {
     title: 'Cyberpunk Noir Obsidian',
